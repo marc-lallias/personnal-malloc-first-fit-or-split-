@@ -5,27 +5,40 @@
 ## Login   <marc.lallias@epitech.eu>
 ## 
 ## Started on  Tue Jan 24 12:11:07 2017 DarKmarK
-## Last update Tue Jan 24 14:56:27 2017 DarKmarK
+## Last update Tue Jan 24 19:44:25 2017 DarKmarK
 ##
 
 NAME	=	program
 
 CC	=	gcc
 
-RM	= rm -rf
+RM	=	rm -rf
 
-SRCS	= 	malloc.c	\
-		main.c		\
+SRCS	=	./test/test_main.c		\
 
-OBJS	= $(SRCS:.c=.o)
+LIBSRC	=	./src/malloc.c			\
 
-CFLAGS = -I
+OBJS	=	$(SRCS:.c=.o)
+
+LIBOBJ  =	$(LIBSRC:.c=.o)
+
+TARGET	=	libmy_malloc.so
+
+DESTDIR	=	./lib/
+
+CFLAGS  = -fPIC -g
 CFLAGS += -W -Wall -Wextra
 
-all: $(NAME)
+LDFLAGS = -shared
+
+all: $(TARGET)
+
+
+$(TARGET): $(LIBOBJ)
+	$(CC) $(CFLAGS)  $(LDFLAGS)  $(LIBSRC) -o $(DESTDIR)$(TARGET)
 
 $(NAME): $(OBJS)
-	 $(CC) $(OBJS) -o $(NAME)
+	 $(CC) $(OBJS) -libmy_malloc.so -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
