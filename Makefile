@@ -5,7 +5,7 @@
 ## Login   <marc.lallias@epitech.eu>
 ## 
 ## Started on  Tue Jan 24 12:11:07 2017 DarKmarK
-## Last update Tue Jan 24 12:12:56 2017 DarKmarK
+## Last update Tue Jan 24 14:56:27 2017 DarKmarK
 ##
 
 NAME	=	program
@@ -14,7 +14,7 @@ CC	=	gcc
 
 RM	= rm -rf
 
-SRCS	= 	my_malloc.c	\
+SRCS	= 	malloc.c	\
 		main.c		\
 
 OBJS	= $(SRCS:.c=.o)
