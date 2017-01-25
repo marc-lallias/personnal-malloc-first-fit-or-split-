@@ -5,7 +5,7 @@
 ## Login   <marc.lallias@epitech.eu>
 ## 
 ## Started on  Tue Jan 24 12:11:07 2017 DarKmarK
-## Last update Tue Jan 24 19:44:25 2017 DarKmarK
+## Last update Wed Jan 25 10:24:00 2017 pierre.peixoto
 ##
 
 NAME	=	program
@@ -26,8 +26,8 @@ TARGET	=	libmy_malloc.so
 
 DESTDIR	=	./lib/
 
-CFLAGS  = -fPIC -g
-CFLAGS += -W -Wall -Wextra
+CFLAGS = -W -Wall -Wextra
+CFLAGS += -fPIC
 
 LDFLAGS = -shared
 
