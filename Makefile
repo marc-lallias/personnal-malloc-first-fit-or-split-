@@ -5,7 +5,7 @@
 ## Login   <marc.lallias@epitech.eu>
 ## 
 ## Started on  Tue Jan 24 12:11:07 2017 DarKmarK
-## Last update Wed Jan 25 11:16:28 2017 DarKmarK
+## Last update Wed Jan 25 11:19:38 2017 DarKmarK
 ##
 
 NAME	=	program
@@ -41,7 +41,7 @@ $(NAME): $(OBJ)
 	 $(CC) $(OBJ) -L$(DESTDIR)$(TARGET) -o $(NAME)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJ)
 
 fclean: clean
 	$(RM) $(NAME)
