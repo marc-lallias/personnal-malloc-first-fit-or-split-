@@ -5,7 +5,7 @@
 ## Login   <marc.lallias@epitech.eu>
 ## 
 ## Started on  Tue Jan 24 12:11:07 2017 DarKmarK
-## Last update Wed Jan 25 10:24:00 2017 pierre.peixoto
+## Last update Wed Jan 25 11:16:28 2017 DarKmarK
 ##
 
 NAME	=	program
@@ -18,27 +18,27 @@ SRCS	=	./test/test_main.c		\
 
 LIBSRC	=	./src/malloc.c			\
 
-OBJS	=	$(SRCS:.c=.o)
+OBJ	=	$(SRCS:.c=.o)
 
 LIBOBJ  =	$(LIBSRC:.c=.o)
 
 TARGET	=	libmy_malloc.so
 
-DESTDIR	=	./lib/
+DESTDIR	=	.
 
 CFLAGS = -W -Wall -Wextra
 CFLAGS += -fPIC
 
 LDFLAGS = -shared
 
-all: $(TARGET)
+all: $(TARGET) $(NAME)
 
 
 $(TARGET): $(LIBOBJ)
 	$(CC) $(CFLAGS)  $(LDFLAGS)  $(LIBSRC) -o $(DESTDIR)$(TARGET)
 
-$(NAME): $(OBJS)
-	 $(CC) $(OBJS) -libmy_malloc.so -o $(NAME)
+$(NAME): $(OBJ)
+	 $(CC) $(OBJ) -L$(DESTDIR)$(TARGET) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)
@@ -46,6 +46,12 @@ clean:
 fclean: clean
 	$(RM) $(NAME)
 
-re: fclean all
+lclean:
+	$(RM) $(LIBOBJ)
 
-.PHONY: all clean fclean re
+lfclean: lclean
+	$(RM) $(DESTDIR)$(TARGET)
+
+re: fclean lfclean all
+
+.PHONY: all clean lclean lfclean fclean re
