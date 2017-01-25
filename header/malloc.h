@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Tue Jan 24 19:41:09 2017 DarKmarK
+** Last update Tue Jan 24 19:00:21 2017 marc lallias
 */
 
 #ifndef MALLOC_H
@@ -13,6 +13,6 @@
 
 #include <stdio.h>
 
-void	*mmalloc(size_t size);
+void	*malloc(size_t size);
 
 #endif

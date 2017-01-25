@@ -5,11 +5,11 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Tue Jan 24 19:40:35 2017 DarKmarK
+** Last update Tue Jan 24 19:27:13 2017 marc lallias
 */
 
 #include "../header/malloc.h"
-//#include <stdlib.h>
+#include <stdlib.h>
 
 int main()
 {
