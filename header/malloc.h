@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Mon Jan 30 16:21:24 2017 pierre.peixoto
+** Last update Mon Jan 30 16:47:09 2017 pierre.peixoto
 */
 
 #ifndef MALLOC_H
@@ -18,13 +18,13 @@
 #define SIZE_META_DATA	sizeof(struct s_meta_data)//faire static passetr au puissance de 4ateur
 #define PAGE_SIZE	getpagesize()//faire static passetr au puissance de 4ateur
 
-typedef struct		s_meta_data
+typedef struct __attribute__((__packed__))	s_meta_data
 {
-  size_t       		size;
-  bool			is_free;
-  struct s_meta_data	*next;
-  struct s_meta_data	*prev;
-}			t_meta_data;
+  struct s_meta_data				*next;
+  struct s_meta_data				*prev;
+  size_t					size;
+  bool						is_free;
+}						t_meta_data;
 
 /*
  * FREE
