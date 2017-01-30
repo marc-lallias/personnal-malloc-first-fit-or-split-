@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Mon Jan 30 15:20:21 2017 DarKmarK
+** Last update Mon Jan 30 15:46:41 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -26,6 +26,7 @@ int main()
   my_free(ptr3);
   ptr4	= my_malloc(400);
   my_free(ptr4);
+  my_malloc(10);
   //my_free(ptr3);
   //my_free(ptr);
   show_alloc_mem();

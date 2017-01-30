@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Mon Jan 30 14:34:10 2017 DarKmarK
+** Last update Mon Jan 30 15:44:30 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -20,7 +20,7 @@ t_meta_data	*alloc_block_end(t_meta_data *prev, size_t size)
   if ((new = sbrk(SIZE_META_DATA + size)) == (void *) -1)
     return (NULL);
   new->prev		= prev;
-  new->next		= new + SIZE_META_DATA + size;// !!! si ca pete c est ici
+  new->next		= (int)new + SIZE_META_DATA + size;// !!! si ca pete c est ici
   new->size		= size;
   new->is_free		= false;
   if (prev != NULL)
