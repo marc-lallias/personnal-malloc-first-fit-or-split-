@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Mon Jan 30 01:56:24 2017 DarKmarK
+** Last update Mon Jan 30 14:36:12 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -18,10 +18,10 @@ int main()
   char	*ptr3;
   
   ptr	= my_malloc(1000);
-  ptr2	=my_malloc(1000);
-  ptr3	= my_malloc(4060);
-  my_free(ptr);
+  ptr2	= my_malloc(1000);
+  ptr3	= my_malloc(4000);
   my_free(ptr2);
+  my_free(ptr);
   my_malloc(400);
   //my_free(ptr3);
   //my_free(ptr);
