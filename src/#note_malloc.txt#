@@ -1,0 +1,83 @@
+faire des define des:
+sizeof( struct)
+
+int	begin ()  //BEGIN de struct ou pointeur return
+int	end
+int	getpagesize
+
+
+LES TESTS DANS LE MAIN
+
+void
+* malloc ( size_t size)
+{
+void *p;
+p = sbrk (0);
+/* If sbrk fails , we return NULL */
+if ( sbrk (size) == (void *) -1)
+return NULL;
+return p;
+}
+
+struct s_block {
+size_t
+size;
+t_block
+next;
+int
+free;
+};
+
+/* Example of using t_block without malloc
+t_block
+b;
+/* save the old break in b
+b = sbrk (0);
+/* add the needed space
+/* size is the parameter of malloc
+sbrk ( sizeof ( struct s_block ) + size );
+b->size = size;
+/* ...
+5
+*/
+*/
+*/
+*/
+*/
+
+When the compiler encounter an access to struct
+field (like s.free or p->free) it translate it to the base address of the struct plus the sum of
+the length of the previous field (so p->free is equivalent to *((char*)p+8) and s.free is
+equivalent to *((char*)&s + 8).) All you have to do is to allocate enough space with sbrk
+for the chunck (so the size of the meta-data plus the size of the data block) and put the address
+of the old break in a variable of type t block:
+
+a = 13
+
+if a % 4 = 0 -> deja aligne
+
+//(x − 1)/4 × 4 + 4 /* pour faire sans le if % 4
+
+13 / 4 = 4 -> * 4 = 12 -> + 4 = 16
+
+# define BLOCK_SIZE sizeof ( struct s_block )
+
+Try to split the block (the difference between the requested size and the size of
+the block is enough to store the meta-data and a minimal block (4 bytes;)
+
+
+A solution to eliminate some fragmentation is to fusion free chunks. When we free a chunk,
+and its neighbors are also free, we can fusion them in one bigger chunk. All we have to do is
+to test the next and previous chunks. But, how to find the previous block ? We have several
+solitions:
+
+if we are at the end of the heap, we just have to put the
+break at the chunk position with a simple call to brk(2).
+
+
+
+
+pb:: des free
+
+si c'est le seul maillon refoutre L'offset a NULL;
+si c'est le maillon est le dernier brk (NULL);
