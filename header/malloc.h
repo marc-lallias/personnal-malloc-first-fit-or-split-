@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Mon Jan 30 00:11:58 2017 DarKmarK
+** Last update Mon Jan 30 16:21:24 2017 pierre.peixoto
 */
 
 #ifndef MALLOC_H

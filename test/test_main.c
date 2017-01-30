@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Mon Jan 30 16:15:00 2017 DarKmarK
+** Last update Mon Jan 30 16:17:00 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -20,6 +20,7 @@ void	test(char *ptr5)
   while (i < 50)
     {
       ptr5[i] = (i % 9) + '0';
+      ++i;
     }
 
   return ;

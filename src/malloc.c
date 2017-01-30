@@ -5,13 +5,13 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Mon Jan 30 16:10:06 2017 DarKmarK
+** Last update Mon Jan 30 16:28:34 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
 
-static t_meta_data		*start		= NULL;
-static int			end		= 0;
+t_meta_data		*start		= NULL;
+void			*end		= 0;
 
 t_meta_data	*alloc_block_end(t_meta_data *prev, size_t size)
 {
@@ -20,7 +20,7 @@ t_meta_data	*alloc_block_end(t_meta_data *prev, size_t size)
   if ((new = sbrk(SIZE_META_DATA + size)) == (void *) -1)
     return (NULL);
   new->prev		= prev;
-  new->next		= (int)new + SIZE_META_DATA + size;// !!! si ca pete c est ici
+  new->next		= new + SIZE_META_DATA + size;// !!! si ca pete c est ici
   new->size		= size;
   new->is_free		= false;
   if (prev != NULL)
@@ -57,9 +57,9 @@ t_meta_data	*fragmentat(t_meta_data *offset, size_t size)
 {
   t_meta_data	*new;
 
-  printf("XXXX offset->size %d\n", offset->size);
+  printf("XXXX offset->size %d\n", (int)offset->size);
   //
-  new			= (int)offset + size + SIZE_META_DATA;//POUR LES AUTRES LE CAST
+  new			= offset + size + SIZE_META_DATA;//POUR LES AUTRES LE CAST
   new->next		= offset->next;// !!! si ca pete c est ici
   new->size		= offset->size - size - SIZE_META_DATA;
   new->is_free		= true;
@@ -70,7 +70,6 @@ t_meta_data	*fragmentat(t_meta_data *offset, size_t size)
   offset->size		= size;
   offset->is_free	= false;
   offset->next		= new;
-  printf("FRAGMENTATION%d -- %d\n");
 
   return (offset);
 }
@@ -102,7 +101,7 @@ void		concat_free_after(t_meta_data *meta)
       printf("XXXX");
       offset	= offset->next;
     }
-  meta->size	= ((int)(offset->next) - (int)(meta)) - SIZE_META_DATA;//LE + 1 pour le 32
+  meta->size	= ((size_t)(offset->next) - (size_t)(meta)) - SIZE_META_DATA;//LE + 1 pour le 32
   meta->next	= offset->next;}
 
 
@@ -112,11 +111,11 @@ void		concat_free_before(t_meta_data *meta)
   t_meta_data	*offset;
 
   offset	= meta;
-  printf("ICIadd prev %d\n", offset->prev);
+  //printf("ICIadd prev %d\n", offset->prev);
   while ((offset->prev != 0) && (offset != start) && (offset->prev->is_free == true))
   {
     printf("YYYY\n");
-    printf("add prev %d\n", offset->prev);
+    //printf("add prev %d\n", offset->prev);
     offset	= offset->prev;
   }
   /*if (offset == start)
@@ -124,10 +123,10 @@ void		concat_free_before(t_meta_data *meta)
       start	= offset; 
     }*/
   //meta->size = 99;
-  printf("offset->next %d -- meta->next %d\n\n", offset->next, meta->next);
+  //printf("offset->next %d -- meta->next %d\n\n", offset->next, meta->next);
   if (offset != meta)
     {
-      offset->size		= (int)meta->next - (int)(meta + 1);//LE + 1 pour le 32
+      offset->size		= (size_t)meta->next - (size_t)(meta + 1);//LE + 1 pour le 32
       offset->next		= meta->next;
       offset->is_free		= true;
     }
@@ -136,7 +135,7 @@ void		concat_free_before(t_meta_data *meta)
 void		concat_free(t_meta_data *meta)
 {
   concat_free_after(meta);//check
-  //concat_free_before(meta);//check dans concat_free_before()prev->next->next;
+  concat_free_before(meta);//check dans concat_free_before()prev->next->next;
 
   return ;
 }
@@ -176,10 +175,10 @@ void		my_free(void *ptr)
 void		show_alloc_mem(void)
 {
   t_meta_data	*offset;
-  int cast_add;
+  void		*cast_add;
 
   
-  printf("sizeof(t_meta_data) %d break %d page size %d\n", SIZE_META_DATA, sbrk(0), PAGE_SIZE);
+  //printf("sizeof(t_meta_data) %d break %d page size %d\n", (int)SIZE_META_DATA, (int)sbrk(0), (int)PAGE_SIZE);
   if (start == NULL)
     return;
   offset = start; //Pour le premier
