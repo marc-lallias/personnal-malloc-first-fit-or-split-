@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Mon Jan 30 16:54:21 2017 pierre.peixoto
+** Last update Mon Jan 30 17:29:04 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -59,7 +59,7 @@ t_meta_data	*fragmentat(t_meta_data *offset, size_t size)
 {
   t_meta_data	*new;
 
-  printf("XXXX offset->size %d\n", (int)offset->size);
+  //printf("XXXX offset->size %d\n", (int)offset->size);
   //
   new			= offset + size + SIZE_META_DATA;//POUR LES AUTRES LE CAST
   new->next		= offset->next;// !!! si ca pete c est ici
@@ -68,7 +68,7 @@ t_meta_data	*fragmentat(t_meta_data *offset, size_t size)
   new->prev		= offset;
 
   //
-  printf("PENIS!!\n");// POURQUOI DES PB AVEC LE PREV qui fait chier  dans le while prev de concat
+  //printf("PENIS!!\n");// POURQUOI DES PB AVEC LE PREV qui fait chier  dans le while prev de concat
   offset->size		= size;
   offset->is_free	= false;
   offset->next		= new;
@@ -76,7 +76,7 @@ t_meta_data	*fragmentat(t_meta_data *offset, size_t size)
   return (offset);
 }
 
-void		*my_malloc(size_t size)
+void		*malloc(size_t size)
 {
   t_meta_data	*block;
 
@@ -100,7 +100,7 @@ void		concat_free_after(t_meta_data *meta)
   offset	= meta;
   while ((offset->next != end) && (offset->next->is_free == true))
     {
-      printf("XXXX");
+      //printf("XXXX");
       offset	= offset->next;
     }
   meta->size	= ((size_t)(offset->next) - (size_t)(meta)) - SIZE_META_DATA;//LE + 1 pour le 32
@@ -116,7 +116,7 @@ void		concat_free_before(t_meta_data *meta)
   //printf("ICIadd prev %d\n", offset->prev);
   while ((offset->prev != 0) && (offset != start) && (offset->prev->is_free == true))
   {
-    printf("YYYY\n");
+    //printf("YYYY\n");
     //printf("add prev %d\n", offset->prev);
     offset	= offset->prev;
   }
@@ -142,7 +142,7 @@ void		concat_free(t_meta_data *meta)
   return ;
 }
 
-void		my_free(void *ptr)
+void		free(void *ptr)
 {
   t_meta_data	*meta;
 
@@ -187,10 +187,12 @@ void		show_alloc_mem(void)
   while ((offset != NULL) && (offset != end))
     {
       cast_add = offset;
+      /*
       if (offset->next == NULL)
 	printf("%d - %d : %d bytes   diff %d\n", offset, offset + offset->size + SIZE_META_DATA, 666);
 	else
 	  printf("%d - %d : %d bytes   free %d\n", offset, offset->next, offset->size, offset->is_free);
+      */
       offset = offset->next;
     }
 
