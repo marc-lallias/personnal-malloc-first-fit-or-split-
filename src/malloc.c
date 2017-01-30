@@ -5,13 +5,15 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Mon Jan 30 16:28:34 2017 pierre.peixoto
+** Last update Mon Jan 30 16:54:21 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
 
-t_meta_data		*start		= NULL;
-void			*end		= 0;
+// todo: Mettre des const pour empecher les copies mémoires
+
+//t_meta_data		*start		= NULL;
+//void			*end		= 0;
 
 t_meta_data	*alloc_block_end(t_meta_data *prev, size_t size)
 {
