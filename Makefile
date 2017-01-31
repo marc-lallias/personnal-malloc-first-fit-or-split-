@@ -5,7 +5,7 @@
 ## Login   <marc.lallias@epitech.eu>
 ## 
 ## Started on  Tue Jan 24 12:11:07 2017 DarKmarK
-## Last update Tue Jan 31 10:20:54 2017 DarKmarK
+## Last update Tue Jan 31 10:55:21 2017 DarKmarK
 ##
 
 NAME	=	program
@@ -20,6 +20,8 @@ SRCS	=	./test/test_main.c		\
 		./src/show_alloc_mem.c		\
 
 LIBSRC	=	./src/malloc.c			\
+		./src/free.c			\
+		./src/show_alloc_mem.c		\
 
 OBJ	=	$(SRCS:.c=.o)
 

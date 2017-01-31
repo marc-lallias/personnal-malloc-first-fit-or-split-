@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Mon Jan 30 17:30:03 2017 pierre.peixoto
+** Last update Tue Jan 31 12:06:30 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -33,22 +33,23 @@ int main()
   char	*ptr3;
   char	*ptr4;
   char	*ptr5;
-  
-  ptr	= malloc(1000);
+
+  printf("IIIIIstart= %d\n", sbrk(0));
+  ptr	= my_malloc(1000);
   test(ptr);
-  ptr2	= malloc(1000);
+  ptr2	= my_malloc(1000);
   test(ptr2);
-  ptr3	= malloc(4000);
+  ptr3	= my_malloc(4000);
   test(ptr3);
-  free(ptr2);
-  free(ptr);
-  free(ptr3);
-  ptr4	= malloc(400);
+  my_free(ptr2);
+  my_free(ptr);
+  my_free(ptr3);
+  ptr4	= my_malloc(400);
   test(ptr4);
-  free(ptr4);
-  malloc(10);
-  //my_free(ptr3);
-  //my_free(ptr);
+  my_free(ptr4);
+  ptr4 = my_malloc(10);
+  my_free(ptr4);
   //show_alloc_mem();
+  printf("XXXXXXXapres all free= %d    %d\n", sbrk(0), end);
   return (0);
 }
