@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Mon Jan 30 17:28:31 2017 pierre.peixoto
+** Last update Tue Jan 31 09:28:36 2017 DarKmarK
 */
 
 #ifndef MALLOC_H
@@ -36,6 +36,11 @@ static t_meta_data	*start = NULL;
 static void		*end = 0;
 
 /*
+ * MALLOC
+ */
+void		*malloc(size_t size);
+
+/*
  * FREE
  */
 void		free(void *ptr);
@@ -44,14 +49,5 @@ void		free(void *ptr);
  * TOOLS
  */
 void		show_alloc_mem(void);
-
-/*
- * MALLOC
- */
-t_meta_data	*alloc_block_end(t_meta_data *prev, size_t size);
-t_meta_data	*go_next(t_meta_data *block);
-t_meta_data	*found_space(size_t size);
-void		*alloc(t_meta_data *block, size_t size);
-void		*malloc(size_t size);
 
 #endif

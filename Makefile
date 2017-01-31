@@ -5,7 +5,7 @@
 ## Login   <marc.lallias@epitech.eu>
 ## 
 ## Started on  Tue Jan 24 12:11:07 2017 DarKmarK
-## Last update Mon Jan 30 16:47:25 2017 pierre.peixoto
+## Last update Tue Jan 31 10:20:54 2017 DarKmarK
 ##
 
 NAME	=	program
@@ -17,6 +17,7 @@ RM	=	rm -rf
 SRCS	=	./test/test_main.c		\
 		./src/malloc.c			\
 		./src/free.c			\
+		./src/show_alloc_mem.c		\
 
 LIBSRC	=	./src/malloc.c			\
 
