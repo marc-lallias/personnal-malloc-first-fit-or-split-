@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Tue Jan 31 09:28:36 2017 DarKmarK
+** Last update Tue Jan 31 11:50:30 2017 DarKmarK
 */
 
 #ifndef MALLOC_H
@@ -32,18 +32,18 @@ typedef struct __attribute__((__packed__))	s_meta_data
 /*
 ** Static globals
 */
-static t_meta_data	*start = NULL;
-static void		*end = 0;
+extern t_meta_data	*start;
+extern void		*end;
 
 /*
  * MALLOC
  */
-void		*malloc(size_t size);
+void		*my_malloc(size_t size);
 
 /*
  * FREE
  */
-void		free(void *ptr);
+void		my_free(void *ptr);
 
 /*
  * TOOLS
