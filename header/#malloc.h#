@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Tue Jan 31 16:49:00 2017 pierre.peixoto
+** Last update Tue Jan 31 11:50:30 2017 DarKmarK
 */
 
 #ifndef MALLOC_H
@@ -38,12 +38,12 @@ extern void		*end;
 /*
  * MALLOC
  */
-void		*malloc(size_t size);
+void		*my_malloc(size_t size);
 
 /*
  * FREE
  */
-void		free(void *ptr);
+void		my_free(void *ptr);
 
 /*
  * TOOLS
