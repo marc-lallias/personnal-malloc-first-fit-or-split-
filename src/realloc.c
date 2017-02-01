@@ -5,36 +5,30 @@
 ** Login   <pierre.peixoto@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 14:03:00 2017 pierre.peixoto
-** Last update Wed Feb  1 15:18:14 2017 pierre.peixoto
+** Last update Wed Feb  1 16:06:12 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
 
-void		*realloc(void *ptr, const size_t size)
+void		*xrealloc(void *ptr, size_t size)
 {
   t_meta_data	*begin;
   size_t	i;
   char		*cpy;
   char		*result;
 
-  begin = start;
-  while (start != (ptr - SIZE_META_DATA) && start != NULL)
-    start = start->next;
-  if (start == NULL)
-    {
-      start = begin;
-      return (NULL);
-    }
+  begin = ptr - sizeof(t_meta_data);
+  if (begin == NULL)
+    return (NULL);
   if ((result = malloc(size)) == NULL)
     return (NULL);
   i = 0;
   cpy = ptr;
-  while (i < start->size)
+  while (i < begin->size && i < size)
     {
       result[i] = cpy[i];
       ++i;
     }
-  start = begin;
   free(ptr);
   return (result);
 }

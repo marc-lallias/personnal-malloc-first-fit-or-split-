@@ -5,7 +5,7 @@
 ## Login   <marc.lallias@epitech.eu>
 ## 
 ## Started on  Tue Jan 24 12:11:07 2017 DarKmarK
-## Last update Tue Jan 31 14:14:52 2017 pierre.peixoto
+## Last update Wed Feb  1 15:25:14 2017 pierre.peixoto
 ##
 
 NAME	=	program
@@ -18,10 +18,12 @@ SRCS	=	./test/test_main.c		\
 		./src/malloc.c			\
 		./src/free.c			\
 		./src/show.c			\
+		./src/realloc.c			\
 
 LIBSRC	=	./src/malloc.c			\
 		./src/free.c			\
 		./src/show.c			\
+		./src/realloc.c			\
 
 OBJ	=	$(SRCS:.c=.o)
 

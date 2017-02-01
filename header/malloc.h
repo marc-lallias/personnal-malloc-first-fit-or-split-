@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Tue Jan 31 16:49:00 2017 pierre.peixoto
+** Last update Wed Feb  1 15:25:50 2017 pierre.peixoto
 */
 
 #ifndef MALLOC_H
@@ -44,6 +44,11 @@ void		*malloc(size_t size);
  * FREE
  */
 void		free(void *ptr);
+
+/*
+** REALLOC
+*/
+void		*realloc(void *ptr, size_t size);
 
 /*
  * TOOLS
