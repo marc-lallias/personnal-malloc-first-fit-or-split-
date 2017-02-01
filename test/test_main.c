@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Tue Jan 31 16:46:42 2017 pierre.peixoto
+** Last update Wed Feb  1 14:31:34 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -41,7 +41,8 @@ int main()
   test(ptr2);
   ptr3	= malloc(4000);
   test(ptr3);
-  //my_free(ptr2);
+  free(ptr2);
+  free(ptr3);
   //my_free(ptr);
   //my_free(ptr3);
   ptr4	= malloc(400);
