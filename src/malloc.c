@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Wed Feb  1 10:52:47 2017 DarKmarK
+** Last update Wed Feb  1 13:55:01 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -15,7 +15,7 @@
 t_meta_data		*start		= NULL;
 void			*end		= 0;
 
-t_meta_data	*alloc_block_end(t_meta_data *prev, size_t size)
+t_meta_data	*alloc_block_end(t_meta_data *prev, const size_t size)
 {
   t_meta_data	*new;
   
@@ -35,19 +35,16 @@ t_meta_data	*alloc_block_end(t_meta_data *prev, size_t size)
   return (new);
 }
 
-t_meta_data	*found_space(size_t size)
+t_meta_data	*found_space(const size_t size)
 {
   t_meta_data	*offset;
 
-  offset = start; //Pour le premier
+  offset = start;
   while (offset != NULL && offset->next != end)
     {
       if ((offset->is_free == true) &&
 	  (offset->size >= size + SIZE_META_DATA))
-  	{
-
-  	  return (offset);
-  	}
+	return (offset);
       offset = offset->next;
     }
 
@@ -55,18 +52,16 @@ t_meta_data	*found_space(size_t size)
 }
 
 
-t_meta_data	*fragmentat(t_meta_data *offset, size_t size)
+t_meta_data	*fragmentat(t_meta_data *offset, const size_t size)
 {
   t_meta_data	*new;
 
-  //
   new			= offset + size + SIZE_META_DATA;
   new->next		= offset->next;
   new->size		= offset->size - size - (size_t)SIZE_META_DATA;
   new->is_free		= true;
   new->prev		= offset;
 
-  //
   offset->size		= size;
   offset->is_free	= false;
   offset->next		= new;
@@ -78,7 +73,6 @@ void		*malloc(size_t size)
 {
   t_meta_data	*block;
 
-  //write(1,"MALLOC\n", 7);
   block = found_space(size);
   if ((block == NULL) || (block->next == end))
     block = alloc_block_end(block, size);
