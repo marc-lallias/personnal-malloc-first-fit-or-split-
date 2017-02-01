@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Tue Jan 31 16:57:02 2017 pierre.peixoto
+** Last update Wed Feb  1 10:52:47 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -22,7 +22,7 @@ t_meta_data	*alloc_block_end(t_meta_data *prev, size_t size)
   if ((new = sbrk(SIZE_META_DATA + size)) == (void *) -1)
     return (NULL);
   new->prev		= prev;
-  new->next		= (unsigned int)new + (unsigned int)SIZE_META_DATA + (unsigned int)size;
+  new->next		= (size_t)new + (size_t)SIZE_META_DATA + (size_t)size;
   new->size		= size;
   new->is_free		= false;
   if (prev != NULL)
@@ -62,7 +62,7 @@ t_meta_data	*fragmentat(t_meta_data *offset, size_t size)
   //
   new			= offset + size + SIZE_META_DATA;
   new->next		= offset->next;
-  new->size		= offset->size - size - SIZE_META_DATA;
+  new->size		= offset->size - size - (size_t)SIZE_META_DATA;
   new->is_free		= true;
   new->prev		= offset;
 

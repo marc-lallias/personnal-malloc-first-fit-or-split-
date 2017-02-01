@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:09 2017 DarKmarK
-** Last update Tue Jan 31 16:48:50 2017 pierre.peixoto
+** Last update Wed Feb  1 10:51:48 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -20,7 +20,7 @@ void		concat_free_after(t_meta_data *meta)
       //printf("XXXX");
       offset	= offset->next;
     }
-  meta->size	= ((size_t)(offset->next) - (size_t)(meta)) - SIZE_META_DATA;//LE + 1 pour le 32
+  meta->size	= ((size_t)(offset->next) - (size_t)(meta)) - (size_t)SIZE_META_DATA;//LE + 1 pour le 32
   meta->next	= offset->next;}
 
 
@@ -32,14 +32,14 @@ void		concat_free_before(t_meta_data *meta)
   offset	= meta;
   //printf("ICIadd prev %d\n", offset->prev);
   while ((offset->prev != 0) && (offset != start) && (offset->prev->is_free == true))
-  {
-    //printf("YYYY\n");
-    //printf("add prev %d\n", offset->prev);
-    offset	= offset->prev;
-  }
+    {
+      //printf("YYYY\n");
+      //printf("add prev %d\n", offset->prev);
+      offset	= offset->prev;
+    }
   /*if (offset == start)
     {
-      start	= offset; 
+    start	= offset; 
     }*/
   //meta->size = 99;
   //printf("offset->next %d -- meta->next %d\n\n", offset->next, meta->next);
@@ -73,7 +73,6 @@ void		free(void *ptr)
 	{
 	  meta = meta->prev;
 	}
-      //brk(meta->prev);     //LE FAIRE
       if (meta != start)
 	{
 	  //brk(meta->prev->next);//   POURQUOI---------------------------------+++++++++
