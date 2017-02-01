@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Wed Feb  1 18:00:45 2017 pierre.peixoto
+** Last update Wed Feb  1 18:26:42 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -83,11 +83,13 @@ int	main(void)
   int	i;
 
   i = 0;
-  while (i < 90)
+  str = my_malloc(sizeof(char *) * 100);
+  while (i < 2)
     {
       str[i] = my_malloc(sizeof(char) * 100);
-      str[i] = my_realloc(str[i], sizeof(char) * 200);
       str[i] = "bite";
+      str[i] = my_realloc(str[i], sizeof(char) * 200);
+      str[i] = "bIte";
       ++i;
     }
   i = 0;

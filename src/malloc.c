@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Wed Feb  1 18:02:47 2017 pierre.peixoto
+** Last update Wed Feb  1 18:05:39 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -18,7 +18,7 @@ void			*end		= 0;
 t_meta_data	*alloc_block_end(t_meta_data *prev, const size_t size)
 {
   t_meta_data	*new;
-  
+
   if ((new = sbrk(SIZE_META_DATA + size)) == (void *) -1)
     return (NULL);
   new->prev		= prev;
@@ -31,7 +31,7 @@ t_meta_data	*alloc_block_end(t_meta_data *prev, const size_t size)
       start		= new;
 
   end = new->next;
-  
+
   return (new);
 }
 
