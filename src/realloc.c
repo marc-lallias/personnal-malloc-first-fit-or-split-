@@ -5,12 +5,13 @@
 ** Login   <pierre.peixoto@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 14:03:00 2017 pierre.peixoto
-** Last update Wed Feb  1 16:06:12 2017 pierre.peixoto
+** Last update Wed Feb  1 17:59:53 2017 pierre.peixoto
 */
 
+#include <string.h>
 #include "../header/malloc.h"
 
-void		*xrealloc(void *ptr, size_t size)
+void		*my_realloc(void *ptr, size_t size)
 {
   t_meta_data	*begin;
   size_t	i;
@@ -20,15 +21,15 @@ void		*xrealloc(void *ptr, size_t size)
   begin = ptr - sizeof(t_meta_data);
   if (begin == NULL)
     return (NULL);
-  if ((result = malloc(size)) == NULL)
+  if ((result = my_malloc(size)) == NULL)
     return (NULL);
-  i = 0;
   cpy = ptr;
-  while (i < begin->size && i < size)
+  i = 0;
+  while (i < begin->size)
     {
       result[i] = cpy[i];
       ++i;
     }
-  free(ptr);
+  my_free(ptr);
   return (result);
 }

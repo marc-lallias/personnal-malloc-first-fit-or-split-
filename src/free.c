@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:09 2017 DarKmarK
-** Last update Wed Feb  1 15:22:47 2017 pierre.peixoto
+** Last update Wed Feb  1 17:58:03 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -52,7 +52,7 @@ void		concat_free(t_meta_data *meta)
   return ;
 }
 
-void		free(void *ptr)
+void		my_free(void *ptr)
 {
   t_meta_data	*meta;
 

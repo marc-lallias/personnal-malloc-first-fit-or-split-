@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Wed Feb  1 12:15:47 2017 pierre.peixoto
+** Last update Wed Feb  1 17:48:18 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -42,9 +42,6 @@ void		show_alloc_mem(void)
 
   if (start == NULL)
     return ;
-  addr = (size_t)sbrk(0);
-  my_put_nbr(addr);
-  write(1, "\n", 1);
   write(1, "break: ", 7);
   addr = (size_t)(end);
   my_put_nbr(addr);
@@ -52,8 +49,6 @@ void		show_alloc_mem(void)
   begin = start;
   while (start != end)
     {
-      my_put_nbr((unsigned int)(SIZE_META_DATA));
-      write(1, "\n", 1);
       addr = (size_t)start + SIZE_META_DATA;
       my_put_nbr(addr);
       write(1, " - ", 3);
