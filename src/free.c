@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:09 2017 DarKmarK
-** Last update Thu Feb  2 10:05:48 2017 DarKmarK
+** Last update Thu Feb  2 15:06:48 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -17,8 +17,11 @@ void		concat_free_after(t_meta_data *meta)
   offset	= meta;
   while ((offset->next != end) && (offset->next->is_free == true))
     offset	= offset->next;
-  meta->size	= ((size_t)(offset->next) - (size_t)(meta)) - (size_t)SIZE_META_DATA;//PROBLEM
-  meta->next	= offset->next;
+  if (offset != meta)
+    {
+      meta->size	= ((size_t)(offset->next) - (size_t)(meta)) - (size_t)SIZE_META_DATA;//PROBLEM
+      meta->next	= offset;
+    }
 }
 
 
@@ -46,10 +49,28 @@ void		concat_free_before(t_meta_data *meta)
 
 void		concat_free(t_meta_data *meta)
 {
-  concat_free_after(meta);//check
-  concat_free_before(meta);//check dans concat_free_before()prev->next->next;
+  //concat_free_after(meta);//check
+  if (meta != start)
+    concat_free_before(meta);//check dans concat_free_before()prev->next->next;
 
   return ;
+}
+
+
+bool		test_pointer(void *ptr)
+{
+  t_meta_data	*offset;
+  
+  offset = start;
+  while (offset != end)
+    {
+      offset = offset->next;
+      if (offset + 1 == ptr)
+	{
+	  return (true);
+	}
+    }
+  return (false);
 }
 
 void		free(void *ptr)
@@ -57,6 +78,8 @@ void		free(void *ptr)
   t_meta_data	*meta;
 
   if (ptr == NULL || start == NULL)
+    return ;
+  if (test_pointer(ptr) == false)
     return ;
   meta = ptr;
   meta = meta - 1;
@@ -74,10 +97,11 @@ void		free(void *ptr)
 	}
       else
   	{
-	  brk(meta);
+	  brk(start);
   	  start = NULL;
   	  end = 0;
   	}
+      
       return ;
     }
   //concat_free(meta);

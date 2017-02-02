@@ -5,7 +5,7 @@
 ** Login   <pierre.peixoto@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 14:03:00 2017 pierre.peixoto
-** Last update Thu Feb  2 09:47:46 2017 DarKmarK
+** Last update Thu Feb  2 11:12:58 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -30,8 +30,8 @@ void		*realloc(void *ptr, size_t size)
   //my_put_nbr((unsigned int)ptr);
   //write(1, "YYY\n", 5);
   tot_size = size;
+  tot_size += begin->size;
   //write(1, "YYY\n", 5);
-  tot_size = tot_size + (size_t)begin->size;
   //write(1, "YYY\n", 5);
   if ((result = malloc(tot_size)) == NULL)
     return (NULL);

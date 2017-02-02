@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Thu Feb  2 10:05:52 2017 DarKmarK
+** Last update Thu Feb  2 14:58:33 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -75,6 +75,7 @@ void		*malloc(size_t size)
 {
   t_meta_data	*block;
 
+  //write(1, "MALLOC\n", 7);
   block = found_space(size);
   if ((block == NULL) || (block->next == end))
     block = alloc_block_end(block, size);
