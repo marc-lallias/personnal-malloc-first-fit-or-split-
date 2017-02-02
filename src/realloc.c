@@ -5,31 +5,41 @@
 ** Login   <pierre.peixoto@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 14:03:00 2017 pierre.peixoto
-** Last update Wed Feb  1 18:15:59 2017 pierre.peixoto
+** Last update Thu Feb  2 09:47:46 2017 DarKmarK
 */
 
-#include <string.h>
 #include "../header/malloc.h"
+//#include <string.h>
 
-void		*my_realloc(void *ptr, size_t size)
+void		*realloc(void *ptr, size_t size)
 {
   t_meta_data	*begin;
+  size_t       	tot_size;
   size_t	i;
   char		*cpy;
   char		*result;
-
-  begin = ptr - sizeof(t_meta_data);
-  if (begin == NULL)
-    return (NULL);
-  if ((result = my_malloc(size)) == NULL)
-    return (NULL);
-  cpy = ptr;
+  
   i = 0;
+  cpy = ptr;
+  if (ptr == NULL || ptr == 0)
+    {
+      return (malloc(size));
+    }
+  begin = ptr;
+  begin = begin - 1;
+  //my_put_nbr((unsigned int)ptr);
+  //write(1, "YYY\n", 5);
+  tot_size = size;
+  //write(1, "YYY\n", 5);
+  tot_size = tot_size + (size_t)begin->size;
+  //write(1, "YYY\n", 5);
+  if ((result = malloc(tot_size)) == NULL)
+    return (NULL);
   while (i < begin->size)
     {
       result[i] = cpy[i];
       ++i;
     }
-  my_free(ptr);
+  free(ptr);
   return (result);
 }

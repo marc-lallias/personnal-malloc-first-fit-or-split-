@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:09 2017 DarKmarK
-** Last update Wed Feb  1 17:58:03 2017 pierre.peixoto
+** Last update Thu Feb  2 10:05:48 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -17,7 +17,7 @@ void		concat_free_after(t_meta_data *meta)
   offset	= meta;
   while ((offset->next != end) && (offset->next->is_free == true))
     offset	= offset->next;
-  meta->size	= ((size_t)(offset->next) - (size_t)(meta)) - (size_t)SIZE_META_DATA;//LE + 1 pour le 32
+  meta->size	= ((size_t)(offset->next) - (size_t)(meta)) - (size_t)SIZE_META_DATA;//PROBLEM
   meta->next	= offset->next;
 }
 
@@ -38,7 +38,7 @@ void		concat_free_before(t_meta_data *meta)
   //printf("offset->next %d -- meta->next %d\n\n", offset->next, meta->next);
   if (offset != meta)
     {
-      offset->size		= (size_t)meta->next - (size_t)(meta + 1);//LE + 1 pour le 32
+      offset->size		= (size_t)meta->next - (size_t)(offset + 1);//PROBLEM
       offset->next		= meta->next;
       offset->is_free		= true;
     }
@@ -52,7 +52,7 @@ void		concat_free(t_meta_data *meta)
   return ;
 }
 
-void		my_free(void *ptr)
+void		free(void *ptr)
 {
   t_meta_data	*meta;
 
@@ -60,23 +60,28 @@ void		my_free(void *ptr)
     return ;
   meta = ptr;
   meta = meta - 1;
-  if (meta->next == end)
+  if (meta->next == end)//
     {
       while ((meta->prev != 0) && (meta->prev->is_free == true))
   	{
   	  meta = meta->prev;
   	}
       if (meta != start)
-  	end = meta->prev->next;
+	{
+	  end = meta;
+	  //write(1, "AAAA\n", 5);
+	  brk(meta);
+	}
       else
   	{
+	  brk(meta);
   	  start = NULL;
   	  end = 0;
   	}
       return ;
     }
-  concat_free(meta);
+  //concat_free(meta);
   //write(1, "AAAA\n", 5);
-  meta->is_free = true;
+  meta->is_free = true;//PROBLEME
   //write(1, "CCCC\n", 5);
 }

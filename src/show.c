@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Wed Feb  1 17:48:18 2017 pierre.peixoto
+** Last update Thu Feb  2 09:21:45 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -40,12 +40,16 @@ void		show_alloc_mem(void)
   t_meta_data	*begin;
   size_t	addr;
 
-  if (start == NULL)
-    return ;
   write(1, "break: ", 7);
+  addr = (size_t)sbrk(0);
+  my_put_nbr(addr);
+  write(1, "   ", 3);
+  write(1, "end: ", 5);
   addr = (size_t)(end);
   my_put_nbr(addr);
   write(1, "\n", 1);
+  if (start == NULL)
+    return ;
   begin = start;
   while (start != end)
     {
@@ -56,7 +60,13 @@ void		show_alloc_mem(void)
       my_put_nbr(addr);
       write(1, " : ", 3);
       my_put_nbr(start->size);
-      write(1, " bytes\n", 7);
+      if (start->is_free == true)
+	{
+	write(1, " bytes", 6);
+	write(1, " is free\n", 9);
+	}
+      else
+	write(1, " bytes\n", 7);
       start = start->next;
     }
   start = begin;

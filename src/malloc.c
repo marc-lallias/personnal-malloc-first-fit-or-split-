@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Wed Feb  1 18:05:39 2017 pierre.peixoto
+** Last update Thu Feb  2 10:05:52 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -16,13 +16,14 @@ t_meta_data		*start		= NULL;
 void			*end		= 0;
 
 t_meta_data	*alloc_block_end(t_meta_data *prev, const size_t size)
-{
+{//si ->next correspond pas c est parce que je brk() pas du coup le sbrk concatain
   t_meta_data	*new;
-
+  
   if ((new = sbrk(SIZE_META_DATA + size)) == (void *) -1)
     return (NULL);
   new->prev		= prev;
   new->next		= (void *)((size_t)new + (size_t)SIZE_META_DATA + (size_t)size);
+  ///write(1, "XXXX\n", 5);
   new->size		= size;
   new->is_free		= false;
   if (prev != NULL)
@@ -31,7 +32,7 @@ t_meta_data	*alloc_block_end(t_meta_data *prev, const size_t size)
       start		= new;
 
   end = new->next;
-
+  
   return (new);
 }
 
@@ -58,9 +59,7 @@ t_meta_data	*fragmentat(t_meta_data *offset, const size_t size)
 
   new			= (void *)((size_t)offset + (size_t)size + (size_t)SIZE_META_DATA);
   //printf("offset->size= %d\n", offset->size);
-  //write(1, "XXXX\n", 5);
   new->next		= offset->next;
-  //write(1, "YYY\n", 5);
   new->size		= offset->size - (size + (size_t)SIZE_META_DATA);
   new->is_free		= true;
   new->prev		= offset;
@@ -72,7 +71,7 @@ t_meta_data	*fragmentat(t_meta_data *offset, const size_t size)
   return (offset);
 }
 
-void		*my_malloc(size_t size)
+void		*malloc(size_t size)
 {
   t_meta_data	*block;
 
