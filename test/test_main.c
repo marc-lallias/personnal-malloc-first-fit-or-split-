@@ -5,10 +5,10 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Wed Feb  1 18:26:42 2017 pierre.peixoto
+** Last update Thu Feb  2 09:25:05 2017 DarKmarK
 */
 
-#include "../header/malloc.h"
+//#include "../header/malloc.h"
 #include <stdlib.h>
 
 void	test(char *ptr)
@@ -26,7 +26,7 @@ void	test(char *ptr)
   return ;
 }
 
-/*int main()
+int main()
 {
   char	*ptr;
   char	*ptr2;
@@ -35,22 +35,33 @@ void	test(char *ptr)
   int	*intp;
   int	i;
 
-  ptr	= malloc(1000);
-
-  ptr2	= malloc(1000);
-
-  ptr3	= malloc(4000);
-
-  free(ptr2);
-  free(ptr3);
-
-  ptr4	= malloc(11);
-  test(ptr4);
-  ptr4[10] = '\0';
-
-  printf("str: %s \n", ptr4);
+  /* char	*ptr66; */
   
-  show_alloc_mem();
+  /* ptr	= my_malloc(1000); */
+
+  /* ptr2	= my_malloc(1000); */
+
+  /* ptr3	= my_malloc(4000); */
+
+  /* ptr66	= my_malloc(5); */
+  
+  /* show_alloc_mem(); */
+  
+  /* my_free(ptr); */
+  /* my_free(ptr2); */
+  /* my_free(ptr66); */
+  /* my_free(ptr3); */
+  
+  /* show_alloc_mem(); */
+
+  
+  /* ptr4	= my_malloc(11); */
+  /* test(ptr4); */
+  /* ptr4[10] = '\0'; */
+
+  /* //printf("str: %s \n", ptr4); */
+
+  /* show_alloc_mem(); */
 
   intp = malloc(5 * sizeof(int));
   intp[0] = 100;
@@ -59,37 +70,35 @@ void	test(char *ptr)
   intp[3] = 97;
   intp[4] = 96;
 
-  show_alloc_mem();
+  //show_alloc_mem();
   
-  for (i = 0; i < 5; i++)
-    printf("intp:%d\n", intp[i]);
+  //for (i = 0; i < 5; i++)
+  //printf("intp:%d\n", intp[i]);
 
-  intp = realloc(intp, 7);
+  intp = realloc(intp, sizeof(int) * 7);
   intp[5] = 10;
   intp[6] = 11;
 
-  show_alloc_mem();
+  //show_alloc_mem();
 
-  for (i = 0; i < 7; i++)
-    printf("intp2:%d\n", intp[i]);
+  //for (i = 0; i < 7; i++)
+  //printf("intp2:%d\n", intp[i]);
   
   //printf("XXXXXXXapre all free= %d    %d\n", sbrk(0), end);
   return (0);
-}*/
+}
 
-int	main(void)
+/*int	main(void)
 {
   char	**str;
   int	i;
 
   i = 0;
-  str = my_malloc(sizeof(char *) * 100);
-  while (i < 2)
+  while (i < 90)
     {
       str[i] = my_malloc(sizeof(char) * 100);
-      str[i] = "bite";
       str[i] = my_realloc(str[i], sizeof(char) * 200);
-      str[i] = "bIte";
+      str[i] = "bite";
       ++i;
     }
   i = 0;
@@ -98,4 +107,4 @@ int	main(void)
   str[42] = "TEST";
   printf("%s\n", str[42]);
   return (0);
-}
+}*/
