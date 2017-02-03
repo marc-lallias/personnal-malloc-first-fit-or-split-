@@ -5,7 +5,7 @@
 ** Login   <pierre.peixoto@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 14:03:00 2017 pierre.peixoto
-** Last update Fri Feb  3 16:59:39 2017 pierre.peixoto
+** Last update Fri Feb  3 18:09:32 2017 Pierre Peixoto
 */
 
 #include "../header/malloc.h"
@@ -31,7 +31,7 @@ void		*realloc(void *ptr, size_t size)
   tot_size = size;
   if ((result = malloc(tot_size)) == NULL)
     return (NULL);
-  while (i < tot_size)
+  while (i < tot_size && i < begin->size)
     {
       result[i] = cpy[i];
       ++i;

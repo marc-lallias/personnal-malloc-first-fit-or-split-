@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Fri Feb  3 16:39:57 2017 pierre.peixoto
+** Last update Fri Feb  3 18:38:24 2017 Pierre Peixoto
 */
 
 #include "../header/malloc.h"
@@ -25,16 +25,22 @@ int		my_put_str(const char *str)
   return ((write(1, str, i) == 0) ? 0 : -1);
 }
 
-void		my_put_nbr_hexa(const size_t nb)
+static void		my_put_nbr_addr(const size_t nb)
 {
   char			hexa[16] = { '0', '1', '2', '3', '4', '5', '6',
-				     '7', '8', '9', 'A', 'B', 'C', 'D',
-				     'E', 'F' };
-
+				     '7', '8', '9', 'a', 'b', 'c', 'd',
+				     'e', 'f' };
+  
   if (nb / 16)
-    my_put_nbr_hexa(nb / 16);
+    my_put_nbr_addr(nb / 16);
   if (my_putchar(hexa[nb % 16]) == -1)
     return;
+}
+
+void			my_put_nbr_hexa(const size_t nb)
+{
+  my_put_str("0x");
+  my_put_nbr_addr(nb);
 }
 
 void		my_put_nbr(const unsigned int nb)
@@ -52,14 +58,14 @@ void		show_alloc_mem(void)
 
   write(1, "break: ", 7);
   addr = (size_t)sbrk(0);
-  my_put_nbr(addr);
+  my_put_nbr_addr(addr);
   write(1, "   ", 3);
   write(1, "end: ", 5);
   addr = (size_t)(end);
-  my_put_nbr(addr);
+  my_put_nbr_addr(addr);
   write(1, "siz: ", 5);
   addr =(size_t)(SIZE_META_DATA);
-  my_put_nbr(addr);
+  my_put_nbr_addr(addr);
   write(1, "\n", 1);
   if (start == NULL)
     return ;
@@ -67,10 +73,10 @@ void		show_alloc_mem(void)
   while (start != end)
     {
       addr = (size_t)start + SIZE_META_DATA;
-      my_put_nbr(addr);
+      my_put_nbr_hexa(addr);
       write(1, " - ", 3);
       addr = (size_t)start->next;
-      my_put_nbr(addr);
+      my_put_nbr_hexa(addr);
       write(1, " : ", 3);
       my_put_nbr(start->size);
       if (start->is_free == true)
@@ -83,7 +89,7 @@ void		show_alloc_mem(void)
       //
       write(1, " - ", 3);
       addr = (size_t)start->prev + (size_t)32;
-      my_put_nbr(addr);
+      my_put_nbr_hexa(addr);
 
       write(1, "\n", 1);
       start = start->next;
