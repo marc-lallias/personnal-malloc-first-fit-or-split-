@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Fri Feb  3 18:17:54 2017 pierre.peixoto
+** Last update Fri Feb  3 18:29:48 2017 DarKmarK
 */
 
 //#include "../header/malloc.h"
@@ -33,6 +33,10 @@ int main()
   char	*ptr2;
   char	*ptr3;
 
+  my_put_str("sbrk(0) ------------------------->");
+  my_put_nbr(sbrk(0));
+  my_put_str("\n");
+  
   ptr = malloc(10);
   ptr1 = malloc(100);
   ptr2 = malloc(200);
@@ -43,7 +47,7 @@ int main()
   free(ptr2);
   free(ptr);
   free(ptr1);
-  free(ptr3);
+  //free(ptr3);
   show_alloc_mem();
 
   /*write(1, "\n", 1);

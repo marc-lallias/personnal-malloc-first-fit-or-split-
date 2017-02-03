@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:09 2017 DarKmarK
-** Last update Fri Feb  3 18:18:46 2017 pierre.peixoto
+** Last update Fri Feb  3 18:32:07 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -29,7 +29,7 @@ t_meta_data    	*concat_free_before(t_meta_data *meta)
 
 void		concat_free_after(t_meta_data *meta)
 {
-  if (meta != end && meta->next->is_free == true)
+  if (meta->next != end && meta->next->is_free == true)
     concat_free_before(meta->next);
 }
 
