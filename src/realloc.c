@@ -5,11 +5,10 @@
 ** Login   <pierre.peixoto@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 14:03:00 2017 pierre.peixoto
-** Last update Fri Feb  3 15:30:42 2017 DarKmarK
+** Last update Fri Feb  3 16:59:39 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
-//#include <string.h>
 
 void		*realloc(void *ptr, size_t size)
 {
@@ -24,23 +23,17 @@ void		*realloc(void *ptr, size_t size)
   if (size == 0)
     return (NULL);
   if (ptr == NULL || ptr == 0)
-    {
-      write(1, "AAAA\n", 5);
-      return (malloc(size));
-    }
+    return (malloc(size));
   begin = ptr;
   begin = begin - 1;
-  //my_put_nbr((unsigned int)ptr);
-  //write(1, "YYY\n", 5);
+  if (size == begin->size)
+    return (ptr);
   tot_size = size;
-  tot_size = tot_size + begin->size;
-  //write(1, "YYY\n", 5);
-  //write(1, "YYY\n", 5);
   if ((result = malloc(tot_size)) == NULL)
     return (NULL);
-  while (i < begin->size)
+  while (i < tot_size)
     {
-      //result[i] = cpy[i];
+      result[i] = cpy[i];
       ++i;
     }
   free(ptr);

@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Fri Feb  3 16:24:16 2017 pierre.peixoto
+** Last update Fri Feb  3 16:39:57 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -15,14 +15,14 @@ static int	my_putchar(const char c)
   return ((write(1, &c, 1) == 0) ? 0 : -1);
 }
 
-void		my_put_str(const char *str)
+int		my_put_str(const char *str)
 {
   int		i;
 
   i = 0;
   while (str[i])
     ++i;
-  return ((write(1, str, i)) == 0) ? 0 : -1);
+  return ((write(1, str, i) == 0) ? 0 : -1);
 }
 
 void		my_put_nbr_hexa(const size_t nb)
