@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Thu Feb  2 14:58:33 2017 DarKmarK
+** Last update Fri Feb  3 16:14:57 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -19,17 +19,22 @@ t_meta_data	*alloc_block_end(t_meta_data *prev, const size_t size)
 {//si ->next correspond pas c est parce que je brk() pas du coup le sbrk concatain
   t_meta_data	*new;
   
-  if ((new = sbrk(SIZE_META_DATA + size)) == (void *) -1)
+  if ((new = sbrk((size_t)SIZE_META_DATA + (size_t)size)) == (void *) -1)
     return (NULL);
-  new->prev		= prev;
-  new->next		= (void *)((size_t)new + (size_t)SIZE_META_DATA + (size_t)size);
   ///write(1, "XXXX\n", 5);
   new->size		= size;
   new->is_free		= false;
-  if (prev != NULL)
-      prev->next	= new;
+      new->next		= (void *)((size_t)new + (size_t)SIZE_META_DATA + (size_t)size);
+  if (start != NULL)
+    {
+      new->prev		= prev;//PREV PAS BON PUTAIN C"EST LUI MEME
+      prev->next	= (void*)new;//invalid
+    }
   else
+    {
+      new->prev		= prev;
       start		= new;
+    }
 
   end = new->next;
   
@@ -44,23 +49,22 @@ t_meta_data	*found_space(const size_t size)
   while (offset != NULL && offset->next != end)
     {
       if ((offset->is_free == true) &&
-	  (offset->size >= size + SIZE_META_DATA))
-	return (offset);
+	  ((size_t)offset->size > ((size_t)size + (size_t)SIZE_META_DATA)))
+	return (offset);//C"EST PAS PREV MAIS SPACE
       offset = offset->next;
     }
 
-  return (offset);
+  return (offset);//C"EST PAS PREV MAIS END
 }
-
 
 t_meta_data	*fragmentat(t_meta_data *offset, const size_t size)
 {
   t_meta_data	*new;
 
   new			= (void *)((size_t)offset + (size_t)size + (size_t)SIZE_META_DATA);
-  //printf("offset->size= %d\n", offset->size);
   new->next		= offset->next;
-  new->size		= offset->size - (size + (size_t)SIZE_META_DATA);
+  //new->size		= offset->size - (size + (size_t)SIZE_META_DATA);
+  new->size		= (size_t)new->next - (size_t)(new) - (size_t)SIZE_META_DATA;
   new->is_free		= true;
   new->prev		= offset;
 

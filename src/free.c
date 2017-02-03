@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:09 2017 DarKmarK
-** Last update Thu Feb  2 15:06:48 2017 DarKmarK
+** Last update Fri Feb  3 15:48:04 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -25,35 +25,48 @@ void		concat_free_after(t_meta_data *meta)
 }
 
 
-void		concat_free_before(t_meta_data *meta)
+t_meta_data    	*concat_free_before(t_meta_data *meta)
 {
   
   t_meta_data	*offset;
 
-  offset	= meta;
-  while ((offset->prev != 0) && (offset != start) && (offset->prev->is_free == true))
-    offset	= offset->prev;
-  /*if (offset == start)
+  offset = meta;
+  /* //write(1, "YYYY\n", 5); */
+  /* if (offset == start) */
+  /*   return (meta); */
+  /* /\* show_alloc_mem(); *\/ */
+  /* my_put_nbr(meta->next); */
+  /* write(1, "\n", 1); */
+  while ((offset != start) && (offset->prev != 0) && (offset->prev->is_free == true))//uninis=zialis
     {
-    start	= offset; 
-    }*/
+      write(1, "YYYY\n", 5);
+      offset = offset->prev;//OFFSET->PREV = LUI MEME
+    }
+  /* if (offset == start) */
+  /*   { */
+  /*   } */
   //meta->size = 99;
   //printf("offset->next %d -- meta->next %d\n\n", offset->next, meta->next);
   if (offset != meta)
     {
-      offset->size		= (size_t)meta->next - (size_t)(offset + 1);//PROBLEM
-      offset->next		= meta->next;
-      offset->is_free		= true;
+      //      my_put_nbr(offset);
+      write(1, "\n", 1);
+      offset->size		= (size_t)meta->next - (size_t)(offset);//PROBLEM
+      offset->size		= offset->size - (size_t)SIZE_META_DATA;
+      write(1, "XXXX", 4);
+      my_put_nbr(offset->size);
+      write(1, "\n", 1);
+      //offset->size = 5;
+      //offset->size = 100;
+      offset->next       	= meta->next;
     }
+  return (offset);
 }
 
-void		concat_free(t_meta_data *meta)
+t_meta_data    	*concat_free(t_meta_data *meta)
 {
   //concat_free_after(meta);//check
-  if (meta != start)
-    concat_free_before(meta);//check dans concat_free_before()prev->next->next;
-
-  return ;
+    return (concat_free_before(meta));//check dans concat_free_before()prev->next->next;
 }
 
 
@@ -62,13 +75,13 @@ bool		test_pointer(void *ptr)
   t_meta_data	*offset;
   
   offset = start;
-  while (offset != end)
+  while ((void *)offset != end)
     {
-      offset = offset->next;
       if (offset + 1 == ptr)
 	{
 	  return (true);
 	}
+      offset = offset->next;
     }
   return (false);
 }
@@ -80,32 +93,52 @@ void		free(void *ptr)
   if (ptr == NULL || start == NULL)
     return ;
   if (test_pointer(ptr) == false)
-    return ;
+    {
+      //show_alloc_mem();
+      write(1, "\nTTTT\n", 6);
+      /* my_put_nbr((size_t)ptr); */
+      /* write(1, "\n", 1); */
+      /* write(1, "\n", 1); */
+      /* my_put_nbr((size_t)end); */
+      /* write(1, "\n", 1); */
+      /* write(1, "\n", 1); */
+      /* my_put_nbr((size_t)start); */
+      /* write(1, "\n", 1); */
+      /* my_put_nbr((size_t)start->next); */
+      /* write(1, "\n", 1); */
+      /* write(1, "\n", 1); */
+      
+      return ;
+    }
   meta = ptr;
   meta = meta - 1;
-  if (meta->next == end)//
+  meta->is_free	= true;
+  meta = concat_free(meta);
+  if ((void *)meta->next == end)//
     {
-      while ((meta->prev != 0) && (meta->prev->is_free == true))
+      write(1, "OOOO\n", 5);
+      while ((meta != start) && (meta->prev != 0) && (meta->prev->is_free == true))//jump
   	{
   	  meta = meta->prev;
   	}
       if (meta != start)
 	{
-	  end = meta;
+	  end = (void *)meta;
 	  //write(1, "AAAA\n", 5);
-	  brk(meta);
+	  //brk((void *)meta);
 	}
       else
   	{
 	  brk(start);
+  	  //end = (void *)meta;
+	  //write(1, "BBBB\n", 5);
+	  end = 0;
   	  start = NULL;
-  	  end = 0;
   	}
       
       return ;
     }
-  //concat_free(meta);
   //write(1, "AAAA\n", 5);
-  meta->is_free = true;//PROBLEME
+  //meta->is_free = true;//PROBLEME
   //write(1, "CCCC\n", 5);
 }

@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Thu Feb  2 09:32:10 2017 DarKmarK
+** Last update Thu Feb  2 22:40:28 2017 DarKmarK
 */
 
 #ifndef MALLOC_H
@@ -21,7 +21,7 @@
 /*
 ** Structures
 */
-typedef struct __attribute__((__packed__))	s_meta_data
+typedef struct					s_meta_data
 {
   struct s_meta_data				*next;
   struct s_meta_data				*prev;

@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Thu Feb  2 14:20:04 2017 DarKmarK
+** Last update Fri Feb  3 14:56:09 2017 DarKmarK
 */
 
 //#include "../header/malloc.h"
@@ -36,31 +36,58 @@ int main()
   int	i;
 
   char	*ptr66;
+  my_put_nbr(sbrk(0));
+  write(1, "\n", 1);
   
-  ptr	= malloc(1000);
+  /* ptr	= malloc(1000); */
 
-  ptr2	= malloc(1000);
+  /* ptr2	= malloc(1000); */
 
-  ptr3	= malloc(4000);
+  /* ptr3	= malloc(4000); */
 
-  ptr66	= malloc(5);
+  //ptr66	= malloc(5);
 
+  ptr66 = realloc(NULL, 6);
+  show_alloc_mem();
+  ptr66 = realloc(ptr66, 6);
+  show_alloc_mem();
+  ptr66 = realloc(ptr66, 6);
+  show_alloc_mem();
+  ptr66 = realloc(ptr66, 6);
+  show_alloc_mem();
+  ptr66 = realloc(ptr66, 6);
+  show_alloc_mem();
+  ptr66 = realloc(ptr66, 6);
+  show_alloc_mem();
+  return ;
+  //free(ptr66);
   free(ptr);
-  free(ptr66);
-  free(ptr3);
   free(ptr2);
+  free(ptr3);
+  free(ptr66);
   
   show_alloc_mem();
   
   
-  show_alloc_mem();
 
   
   ptr4	= malloc(11);
   test(ptr4);
   ptr4[10] = '\0';
-
+  write(1, "____\n", 5);
+  show_alloc_mem();
   //printf("str: %s \n", ptr4);
+  free(ptr4);
+  write(1, "IIII\n", 5);
+  //free(ptr66);
+  
+  //show_alloc_mem();
+  
+  //free(ptr4);
+  
+  show_alloc_mem();
+  
+  free(ptr66);
 
   show_alloc_mem();
 
