@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Wed Feb  8 10:05:17 2017 pierre.peixoto
+** Last update Wed Feb  8 14:15:59 2017 pierre.peixoto
 */
 
 #ifndef MALLOC_H
@@ -16,8 +16,8 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#define SIZE_META_DATA	sizeof(struct s_meta_data)//faire static passetr au puissance de 4ateur
-#define PAGE_SIZE	getpagesize()//faire static passetr au puissance de 4ateur
+#define SIZE_META_DATA	sizeof(struct s_meta_data)
+#define PAGE_SIZE	getpagesize()
 
 /*
 ** Structures
@@ -35,7 +35,6 @@ typedef struct					s_meta_data
 ** Static globals
 */
 extern t_meta_data	*start;
-//extern void		*end;
 extern pthread_mutex_t	mutex;
 
 /*

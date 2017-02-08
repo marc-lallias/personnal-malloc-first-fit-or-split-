@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Mon Feb  6 14:22:58 2017 DarKmarK
+** Last update Wed Feb  8 14:20:37 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -56,42 +56,23 @@ void		show_alloc_mem(void)
   t_meta_data	*begin;
   size_t	addr;
 
-  write(1, "\n", 1);
-  write(1, "break: ", 7);
+  my_put_str("break: ");
   addr = (size_t)sbrk(0);
-  my_put_nbr(addr);
-  write(1, "   ", 3);
-  /* write(1, "end: ", 5); */
-  /* addr = (size_t)(end); */
-  /* my_put_nbr_addr(addr); */
-  write(1, "siz: ", 5);
-  //addr = (SIZE_META_DATA);
-  my_put_nbr_addr(SIZE_META_DATA);
-  write(1, "\n", 1);
+  my_put_nbr_hexa(addr);
+  my_put_str("\n");
   if (start == NULL)
     return ;
   begin = start;
   while (start != NULL)
     {
       addr = (size_t)start + SIZE_META_DATA;
-      my_put_nbr(addr);
-      write(1, " - ", 3);
+      my_put_nbr_hexa(addr);
+      my_put_str(" - ");
       addr = (size_t)start->next;
-      my_put_nbr(addr);
-      write(1, " : ", 3);
+      my_put_nbr_hexa(addr);
+      my_put_str(" : ");
       my_put_nbr(start->size);
-      if (start->is_free == true)
-	{
-	write(1, " bytes", 6);
-	write(1, " is free", 8);
-	}
-      else
-	write(1, " bytes", 6);
-      //
-      write(1, " - ", 3);
-      addr = (size_t)start->prev + (size_t)32;
-      my_put_nbr(addr);
-
+      write(1, " bytes", 6);
       write(1, "\n", 1);
       start = start->next;
     }
