@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Tue Feb  7 16:41:00 2017 DarKmarK
+** Last update Wed Feb  8 10:52:32 2017 DarKmarK
 */
 
 //#include "../header/malloc.h"
@@ -48,7 +48,7 @@ int main()//mutex lock debut lock fin
   
   ptr = malloc(50);
   ptr1 = malloc(20);
-  ptr2 = malloc(3973);
+  ptr2 = malloc(4000);
   show_alloc_mem();
   //ptr = realloc(ptr, 6000);
   //ptr = malloc(6000);
@@ -60,9 +60,9 @@ int main()//mutex lock debut lock fin
   /* free(ptr); */
   my_put_str("_________________________________________________\n");
   /* free(ptr2); */
-  free(ptr2);
   free(ptr);
   free(ptr1);
+  free(ptr2);
   /* free(ptr2); */
   show_alloc_mem();
 
