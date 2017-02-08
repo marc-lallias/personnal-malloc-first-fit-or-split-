@@ -5,32 +5,42 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:09 2017 DarKmarK
-** Last update Fri Feb  3 21:09:19 2017 Pierre Peixoto
+** Last update Wed Feb  8 10:04:05 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
 
-t_meta_data    	*concat_free_before(t_meta_data *meta)
-{
-  
-  t_meta_data	*offset;
-
-  offset = meta;
-  if (offset != start && offset->prev->is_free == true)
-    {
-      offset = offset->prev;
-      offset->size		+= meta->size + SIZE_META_DATA;
-      offset->next       	= meta->next;
-      if (meta->next != end)
-	meta->next->prev = offset;
-    }
-  return (offset);
-}
-
 void		concat_free_after(t_meta_data *meta)
 {
-  if (meta->next != end && meta->next->is_free == true)
-    concat_free_before(meta->next);
+  if ((meta->next == NULL) || (meta->next->is_free == false) || (meta->next->page_begin == true))
+    return ;
+  meta->size = meta->size + meta->next->size + SIZE_META_DATA;
+  if (meta->next->next != NULL)
+    meta->next->next->prev = meta;
+  meta->next = meta->next->next;
+  /* my_put_str("''''''''''''''''CONCAT_FREE_AFTER\n"); */
+
+  return ;
+}
+
+t_meta_data    	*concat_free_before(t_meta_data *meta)//
+{
+  t_meta_data	*prev;
+
+  if ((meta->prev == NULL) || (meta->prev->is_free == false) || (meta->page_begin == true)
+      || ((meta->prev->page_begin == true) && (meta->page_begin == true)))
+    return (meta);
+  prev = meta->prev;
+  if (meta->next != NULL)
+    meta->next->prev = prev;
+  prev->size = prev->size + meta->size + SIZE_META_DATA;
+  prev->next = meta->next;
+  
+  /* meta->prev = meta->prev->prev; */
+  /* meta->prev->size = meta->prev->size + meta->size +  SIZE_META_DATA; */
+  /* meta->prev->next = meta->next;//segv */
+  
+  return (meta->prev);
 }
 
 t_meta_data    	*concat_free(t_meta_data *meta)
@@ -42,43 +52,46 @@ t_meta_data    	*concat_free(t_meta_data *meta)
 bool		test_pointer(void *ptr)
 {
   t_meta_data	*offset;
-  
+
   offset = start;
-  while ((void *)offset != end)
+  while (offset)
     {
       if (offset + 1 == ptr)
-	{
-	  return (true);
-	}
+	return (true);
       offset = offset->next;
     }
   return (false);
 }
 
-void		free(void *ptr)
+void		free(void *ptr)//fire un check pointeur
 {
   t_meta_data	*meta;
 
-  if (ptr == NULL || start == NULL)
+  if ((ptr == NULL) || (test_pointer(ptr) == false))
     return ;
-  /* if (test_pointer(ptr) == false) */
-  /*   return ; */
+  /* my_put_str("free\n"); */
+  pthread_mutex_lock(&mutex);
   meta = ptr;
   meta = meta - 1;
-  meta->is_free	= true;
-  /* meta = concat_free(meta); */
-  /* if (meta->next == end) */
-  /*   { */
-  /*     if (meta != start) */
-  /* 	{ */
-  /* 	  end = meta; */
-  /* 	  brk((void *)meta); */
-  /* 	} */
-  /*     else */
-  /* 	{ */
-  /* 	  brk(start); */
-  /* 	  end = 0; */
-  /* 	  start = NULL; */
-  /* 	} */
-  /*   } */
+  meta->is_free = true;
+  meta = concat_free(meta);
+  /* if (meta == NULL) */
+  /*   my_put_str("META EST EGALE A NULL\n"); */
+  /* if (meta->page_begin == true) */
+  /*   my_put_str("--TRUE\n"); */
+  /* else */
+  /*   my_put_str("++FALSE\n"); */
+  if ((meta->page_begin == true) && (meta->next == NULL))
+    {
+      /* my_put_str("MOVE BRK\n"); */
+      if (meta->prev == NULL || meta->prev == start)
+      	start = NULL;
+      else
+  	meta->prev->next = NULL;
+      brk(meta);
+      /*if (brk(meta) == (void *) -1)
+	return ;*/
+    }
+  pthread_mutex_unlock(&mutex);
+  return ;
 }

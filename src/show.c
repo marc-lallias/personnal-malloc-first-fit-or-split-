@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Fri Feb  3 18:38:24 2017 Pierre Peixoto
+** Last update Mon Feb  6 14:22:58 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -56,27 +56,28 @@ void		show_alloc_mem(void)
   t_meta_data	*begin;
   size_t	addr;
 
+  write(1, "\n", 1);
   write(1, "break: ", 7);
   addr = (size_t)sbrk(0);
-  my_put_nbr_addr(addr);
+  my_put_nbr(addr);
   write(1, "   ", 3);
-  write(1, "end: ", 5);
-  addr = (size_t)(end);
-  my_put_nbr_addr(addr);
+  /* write(1, "end: ", 5); */
+  /* addr = (size_t)(end); */
+  /* my_put_nbr_addr(addr); */
   write(1, "siz: ", 5);
-  addr =(size_t)(SIZE_META_DATA);
-  my_put_nbr_addr(addr);
+  //addr = (SIZE_META_DATA);
+  my_put_nbr_addr(SIZE_META_DATA);
   write(1, "\n", 1);
   if (start == NULL)
     return ;
   begin = start;
-  while (start != end)
+  while (start != NULL)
     {
       addr = (size_t)start + SIZE_META_DATA;
-      my_put_nbr_hexa(addr);
+      my_put_nbr(addr);
       write(1, " - ", 3);
       addr = (size_t)start->next;
-      my_put_nbr_hexa(addr);
+      my_put_nbr(addr);
       write(1, " : ", 3);
       my_put_nbr(start->size);
       if (start->is_free == true)
@@ -89,7 +90,7 @@ void		show_alloc_mem(void)
       //
       write(1, " - ", 3);
       addr = (size_t)start->prev + (size_t)32;
-      my_put_nbr_hexa(addr);
+      my_put_nbr(addr);
 
       write(1, "\n", 1);
       start = start->next;

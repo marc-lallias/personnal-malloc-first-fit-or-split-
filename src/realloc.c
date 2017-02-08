@@ -5,37 +5,31 @@
 ** Login   <pierre.peixoto@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 14:03:00 2017 pierre.peixoto
-** Last update Fri Feb  3 18:09:32 2017 Pierre Peixoto
+** Last update Wed Feb  8 10:06:39 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
 
 void		*realloc(void *ptr, size_t size)
 {
-  t_meta_data	*begin;
-  size_t       	tot_size;
-  size_t	i;
-  char		*cpy;
-  char		*result;
-  
-  i = 0;
-  cpy = ptr;
-  if (size == 0)
-    return (NULL);
-  if (ptr == NULL || ptr == 0)
+  char		*cast;
+  char		*new_ptr;
+  t_meta_data	*meta;
+  int		i;
+
+  if (ptr == NULL)
     return (malloc(size));
-  begin = ptr;
-  begin = begin - 1;
-  if (size == begin->size)
-    return (ptr);
-  tot_size = size;
-  if ((result = malloc(tot_size)) == NULL)
+  i = 0;
+  meta = ptr;
+  meta = meta - 1;
+  if ((new_ptr = malloc(size)) == NULL)
     return (NULL);
-  while (i < tot_size && i < begin->size)
+  cast = ptr;
+  while (i < meta->size)
     {
-      result[i] = cpy[i];
-      ++i;
+      new_ptr[i] = cast[i];//verifier si bien 1 a 1
+      i = i + 1;
     }
   free(ptr);
-  return (result);
+  return (new_ptr);
 }

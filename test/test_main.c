@@ -5,11 +5,19 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Fri Feb  3 18:29:48 2017 DarKmarK
+** Last update Tue Feb  7 16:41:00 2017 DarKmarK
 */
 
 //#include "../header/malloc.h"
 #include <stdlib.h>
+#include <unistd.h>
+
+/*
+ * TOOLS
+ */
+int		my_put_str(const char *str);
+void		my_put_nbr(const unsigned int nb);
+void		show_alloc_mem(void);
 
 void	test(char *ptr)
 {
@@ -26,29 +34,44 @@ void	test(char *ptr)
   return ;
 }
 
-int main()
+int main()//mutex lock debut lock fin
 {
   char	*ptr;
   char	*ptr1;
   char	*ptr2;
   char	*ptr3;
+  char	*ptr4;
 
   my_put_str("sbrk(0) ------------------------->");
-  my_put_nbr(sbrk(0));
+  my_put_nbr((unsigned int)sbrk(0));
   my_put_str("\n");
   
-  ptr = malloc(10);
-  ptr1 = malloc(100);
-  ptr2 = malloc(200);
-  ptr3 = malloc(300);
+  ptr = malloc(50);
+  ptr1 = malloc(20);
+  ptr2 = malloc(3973);
   show_alloc_mem();
+  //ptr = realloc(ptr, 6000);
+  //ptr = malloc(6000);
 
-  write(1, "\n", 1);
+  /* ptr1 = malloc(100); */
+  /* ptr2 = malloc(200); */
+  /* ptr3 = malloc(300); */
+  //ptr4 = realloc(ptr3, 301);
+  /* free(ptr); */
+  my_put_str("_________________________________________________\n");
+  /* free(ptr2); */
   free(ptr2);
   free(ptr);
   free(ptr1);
-  //free(ptr3);
+  /* free(ptr2); */
   show_alloc_mem();
+
+  /* write(1, "\n", 1); */
+  /* free(ptr2); */
+  /* free(ptr); */
+  /* free(ptr1); */
+  /* //free(ptr3); */
+  /* show_alloc_mem(); */
 
   /*write(1, "\n", 1);
   ptr = realloc(NULL, 6);
