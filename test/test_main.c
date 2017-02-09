@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Wed Feb  8 13:49:07 2017 pierre.peixoto
+** Last update Thu Feb  9 12:08:50 2017 pierre.peixoto
 */
 
 #include <stdlib.h>
@@ -41,7 +41,9 @@ int main()
   char	*ptr3;
   char	*ptr4;
 
-  ptr = malloc(50);
+  ptr = malloc(0);
+  if (ptr == NULL)
+    write(1, "WTF\n", 4);
   ptr1 = malloc(20);
   ptr2 = malloc(4000);
   show_alloc_mem();

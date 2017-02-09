@@ -5,7 +5,7 @@
 ** Login   <pierre.peixoto@epitech.eu>
 ** 
 ** Started on  Wed Feb  1 14:03:00 2017 pierre.peixoto
-** Last update Wed Feb  8 13:47:21 2017 pierre.peixoto
+** Last update Thu Feb  9 12:24:07 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -25,7 +25,7 @@ void		*realloc(void *ptr, size_t size)
   if ((new_ptr = malloc(size)) == NULL)
     return (NULL);
   cast = ptr;
-  while (i < meta->size)
+  while (i < meta->size && size > 0)
     {
       new_ptr[i] = cast[i];
       i = i + 1;

@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Thu Feb  9 10:42:14 2017 pierre.peixoto
+** Last update Thu Feb  9 12:14:12 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -52,7 +52,7 @@ t_meta_data	*found_space(const size_t size)
   return (offset);
 }
 
-t_meta_data	*fragmentat(t_meta_data *offset, const size_t size)
+void		fragmentat(t_meta_data *offset, const size_t size)
 {
   t_meta_data	*new;
   
@@ -76,7 +76,7 @@ void		*malloc(size_t size)
 {
   t_meta_data	*block;
 
-  if (size <= 0)
+  if (size < 0)
     return (NULL);
   pthread_mutex_lock(&mutex);
   block = found_space(size);
@@ -84,7 +84,7 @@ void		*malloc(size_t size)
     block = alloc_block_end(block, size);
   if (block == NULL)
     return (NULL);
-  block = fragmentat(block, size);
+  fragmentat(block, size);
   pthread_mutex_unlock(&mutex);
   return (block + 1);
 }
