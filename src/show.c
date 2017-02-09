@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Wed Feb  8 14:20:37 2017 pierre.peixoto
+** Last update Thu Feb  9 10:44:44 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -37,13 +37,13 @@ static void		my_put_nbr_addr(const size_t nb)
     return;
 }
 
-void			my_put_nbr_hexa(const size_t nb)
+static void	       	my_put_nbr_hexa(const size_t nb)
 {
   my_put_str("0x");
   my_put_nbr_addr(nb);
 }
 
-void		my_put_nbr(const unsigned int nb)
+void			my_put_nbr(const unsigned int nb)
 {
   if (nb / 10)
     my_put_nbr(nb / 10);

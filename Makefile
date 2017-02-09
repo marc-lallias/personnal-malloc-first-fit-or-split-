@@ -5,12 +5,12 @@
 ## Login   <marc.lallias@epitech.eu>
 ## 
 ## Started on  Tue Jan 24 12:11:07 2017 DarKmarK
-## Last update Sun Feb  5 15:51:52 2017 DarKmarK
+## Last update Thu Feb  9 10:44:53 2017 pierre.peixoto
 ##
 
 NAME	=	program
 
-CC	=	gcc -g3
+CC	=	gcc
 
 RM	=	rm -rf
 

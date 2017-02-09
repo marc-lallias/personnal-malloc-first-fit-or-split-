@@ -5,13 +5,13 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Wed Feb  8 13:47:10 2017 pierre.peixoto
+** Last update Thu Feb  9 10:42:14 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
 
-t_meta_data		*start		= NULL;
-pthread_mutex_t		mutex = PTHREAD_MUTEX_INITIALIZER;
+t_meta_data	*start = NULL;
+pthread_mutex_t	mutex = PTHREAD_MUTEX_INITIALIZER;
 
 t_meta_data	*alloc_block_end(t_meta_data *prev, const size_t size)
 {
