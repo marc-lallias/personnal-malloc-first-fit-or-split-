@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 18:41:24 2017 DarKmarK
-** Last update Wed Feb  8 14:54:36 2017 pierre.peixoto
+** Last update Fri Feb 10 18:29:35 2017 pierre.peixoto
 */
 
 #ifndef MALLOC_H
@@ -59,7 +59,6 @@ int		my_put_str(const char *str);
 void		my_put_nbr(const unsigned int nb);
 void		show_alloc_mem(void);
 
-
 /*
  * MALLOC
  */
@@ -74,5 +73,10 @@ void		free(void *ptr);
 ** REALLOC
 */
 void		*realloc(void *ptr, size_t size);
+
+/*
+** CALLOC
+*/
+void		*calloc(size_t nelem, size_t elsize);
 
 #endif
