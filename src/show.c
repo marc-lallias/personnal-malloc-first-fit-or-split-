@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Sun Feb 12 11:27:19 2017 pierre.peixoto
+** Last update Sun Feb 12 12:37:29 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -68,12 +68,14 @@ void		show_alloc_mem(void)
       addr = (size_t)start + SIZE_META_DATA;
       my_put_nbr_hexa(addr);
       my_put_str(" - ");
-      addr = (size_t)start->next;
+      if (start->next == NULL)
+	addr = (size_t)start + SIZE_META_DATA + start->size;
+      else
+	addr = (size_t)start->next;
       my_put_nbr_hexa(addr);
       my_put_str(" : ");
       my_put_nbr(start->size);
-      write(1, " bytes", 6);
-      write(1, "\n", 1);
+      my_put_str(" bytes\n");
       start = start->next;
     }
   start = begin;

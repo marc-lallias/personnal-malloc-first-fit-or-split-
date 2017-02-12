@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Sun Feb 12 11:30:05 2017 pierre.peixoto
+** Last update Sun Feb 12 12:38:09 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -36,7 +36,7 @@ int	main()
   if (ptr == NULL)
     write(1, "Err\n", 4);
   ptr1 = malloc(20);
-  ptr2 = malloc(4000);
+  ptr2 = malloc(4500);
   show_alloc_mem();
   free(ptr);
   free(ptr1);
