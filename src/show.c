@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Sun Feb 12 12:37:29 2017 DarKmarK
+** Last update Sun Feb 12 18:30:33 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -57,8 +57,7 @@ void		show_alloc_mem(void)
   size_t	addr;
 
   my_put_str("break: ");
-  addr = (size_t)sbrk(0);
-  my_put_nbr_hexa(addr);
+  my_put_nbr_hexa((size_t)sbrk(0));
   my_put_str("\n");
   if (start == NULL)
     return ;
