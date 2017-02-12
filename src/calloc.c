@@ -5,7 +5,7 @@
 ** Login   <pierre.peixoto@epitech.eu>
 ** 
 ** Started on  Fri Feb 10 18:27:03 2017 pierre.peixoto
-** Last update Fri Feb 10 18:40:01 2017 pierre.peixoto
+** Last update Sun Feb 12 19:05:33 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -15,7 +15,10 @@ void		*calloc(size_t nmemb, size_t size)
   void		*addr;
   char		*cpy;
   size_t	i;
+  size_t	result;
 
+  if ((result = nmemb * size) > 0x7ffffff)
+    return (NULL);
   addr = malloc(nmemb * size);
   if ((nmemb * size) == 0)
     return (addr);
