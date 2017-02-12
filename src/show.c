@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:06 2017 DarKmarK
-** Last update Thu Feb  9 12:41:53 2017 pierre.peixoto
+** Last update Sun Feb 12 11:27:19 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -30,14 +30,14 @@ static void		my_put_nbr_addr(const size_t nb)
   char			hexa[16] = { '0', '1', '2', '3', '4', '5', '6',
 				     '7', '8', '9', 'a', 'b', 'c', 'd',
 				     'e', 'f' };
-  
+
   if (nb / 16)
     my_put_nbr_addr(nb / 16);
   if (my_putchar(hexa[nb % 16]) == -1)
     return;
 }
 
-static void	       	my_put_nbr_hexa(const size_t nb)
+static void		my_put_nbr_hexa(const size_t nb)
 {
   my_put_str("0x");
   my_put_nbr_addr(nb);

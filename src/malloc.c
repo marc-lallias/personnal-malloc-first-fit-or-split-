@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Thu Feb  9 12:14:12 2017 pierre.peixoto
+** Last update Sun Feb 12 11:26:25 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -55,7 +55,7 @@ t_meta_data	*found_space(const size_t size)
 void		fragmentat(t_meta_data *offset, const size_t size)
 {
   t_meta_data	*new;
-  
+
   if (offset->size > (size + SIZE_META_DATA))
     {
       new = (void *)offset + size + SIZE_META_DATA;

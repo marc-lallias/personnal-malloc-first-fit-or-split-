@@ -5,24 +5,15 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Thu Feb  9 12:08:50 2017 pierre.peixoto
+** Last update Sun Feb 12 11:30:05 2017 pierre.peixoto
 */
 
-#include <stdlib.h>
-#include <unistd.h>
-
-/*
- * TOOLS
- */
-int		my_put_str(const char *str);
-void		my_put_nbr(const unsigned int nb);
-void		show_alloc_mem(void);
+#include "../header/malloc.h"
 
 void	test(char *ptr)
 {
   int	i;
 
-  
   i = 0;
   while (i < 10)
     {
@@ -33,7 +24,7 @@ void	test(char *ptr)
   return ;
 }
 
-int main()
+int	main()
 {
   char	*ptr;
   char	*ptr1;
@@ -43,7 +34,7 @@ int main()
 
   ptr = malloc(0);
   if (ptr == NULL)
-    write(1, "WTF\n", 4);
+    write(1, "Err\n", 4);
   ptr1 = malloc(20);
   ptr2 = malloc(4000);
   show_alloc_mem();
