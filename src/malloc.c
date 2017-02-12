@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 12:08:28 2017 DarKmarK
-** Last update Sun Feb 12 11:26:25 2017 pierre.peixoto
+** Last update Sun Feb 12 18:58:42 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
@@ -76,7 +76,7 @@ void		*malloc(size_t size)
 {
   t_meta_data	*block;
 
-  if (size < 0)
+  if (size > 0x7ffffff)
     return (NULL);
   pthread_mutex_lock(&mutex);
   block = found_space(size);

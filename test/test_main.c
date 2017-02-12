@@ -5,24 +5,10 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Tue Jan 24 15:34:55 2017 DarKmarK
-** Last update Sun Feb 12 12:38:09 2017 DarKmarK
+** Last update Sun Feb 12 19:02:37 2017 pierre.peixoto
 */
 
 #include "../header/malloc.h"
-
-void	test(char *ptr)
-{
-  int	i;
-
-  i = 0;
-  while (i < 10)
-    {
-      ptr[i] = 'S';
-      ++i;
-    }
-
-  return ;
-}
 
 int	main()
 {
@@ -32,15 +18,18 @@ int	main()
   char	*ptr3;
   char	*ptr4;
 
-  ptr = malloc(0);
+  ptr = malloc(-50);
   if (ptr == NULL)
-    write(1, "Err\n", 4);
+    write(1, "OK\n", 3);
   ptr1 = malloc(20);
   ptr2 = malloc(4500);
+  ptr3 = malloc(0);
   show_alloc_mem();
+  free(ptr);
   free(ptr);
   free(ptr1);
   free(ptr2);
+  free(ptr3);
   show_alloc_mem();
   return (0);
 }
