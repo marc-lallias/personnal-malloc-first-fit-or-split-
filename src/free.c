@@ -5,7 +5,7 @@
 ** Login   <marc.lallias@epitech.eu>
 ** 
 ** Started on  Sat Jan 28 21:22:09 2017 DarKmarK
-** Last update Sun Feb 12 11:26:01 2017 pierre.peixoto
+** Last update Sun Feb 12 12:17:38 2017 DarKmarK
 */
 
 #include "../header/malloc.h"
@@ -56,7 +56,7 @@ bool		test_pointer(void *ptr)
   return (false);
 }
 
-void		free(void *ptr)//fire un check pointeur
+void		free(void *ptr)
 {
   t_meta_data	*meta;
 
@@ -73,7 +73,8 @@ void		free(void *ptr)//fire un check pointeur
       	start = NULL;
       else
   	meta->prev->next = NULL;
-      brk(meta);
+      if (brk(meta) == -1)
+	(void)meta;
     }
   pthread_mutex_unlock(&mutex);
   return ;
